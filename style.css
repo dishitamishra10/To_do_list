@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* Background */
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #1d2671, #6c2aa6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Main Card */
+.todo-app {
+  width: 450px;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.todo-app h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #002765;
+}
+
+/* Input Row */
+.row {
+  display: flex;
+  align-items: center;
+  background: #edeef0;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+.row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.row button {
+  border: none;
+  outline: none;
+  padding: 14px 40px;
+  background: #ff5945;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+/* Task List */
+ul li {
+  list-style: none;
+  font-size: 16px;
+  padding: 12px 8px 12px 45px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Circle before task */
+ul li::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  border: 2px solid gray;
+  left: 15px;
+  top: 14px;
+}
+
+/* Checked Task */
+ul li.checked {
+  color: gray;
+  text-decoration: line-through;
+}
+
+ul li.checked::before {
+  background: #ff5945;
+  border-color: #ff5945;
+}
+
+/* Delete Button (×) */
+ul li span {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  color: #555;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+ul li span:hover {
+  background: #edeef0;
+}

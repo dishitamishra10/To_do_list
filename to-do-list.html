@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      width: 70%;
+      border-radius: 5px;
+      border: 1px solid gray;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      margin-top: 10px;
+      background: #f2f2f2;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>📌 Student To-Do List</h2>
+
+  <!-- Input -->
+  <input type="text" id="taskInput" placeholder="Enter your task...">
+  <button onclick="addTask()">Add</button>
+
+  <!-- Task List -->
+  <ul id="taskList"></ul>
+
+  <script>
+    // Load saved tasks when page opens
+    window.onload = loadTasks;
+
+    function addTask() {
+      let taskInput = document.getElementById("taskInput");
+      let taskText = taskInput.value.trim();
+
+      if (taskText === "") {
+        alert("Please enter a task!");
+        return;
+      }
+
+      // Create new task
+      let li = document.createElement("li");
+
+      li.innerHTML = `
+        <span onclick="toggleDone(this)">${taskText}</span>
+        <button onclick="deleteTask(this)">❌</button>
+      `;
+
+      document.getElementById("taskList").appendChild(li);
+
+      taskInput.value = "";
+
+      saveTasks();
+    }
+
+    // Mark task completed
+    function toggleDone(taskSpan) {
+      taskSpan.classList.toggle("done");
+      saveTasks();
+    }
+
+    // Delete task
+    function deleteTask(button) {
+      button.parentElement.remove();
+      saveTasks();
+    }
+
+    // Save tasks in browser storage
+    function saveTasks() {
+      let taskList = document.getElementById("taskList").innerHTML;
+      localStorage.setItem("tasks", taskList);
+    }
+
+    // Load tasks from storage
+    function loadTasks() {
+      let savedTasks = localStorage.getItem("tasks");
+
+      if (savedTasks) {
+        document.getElementById("taskList").innerHTML = savedTasks;
+      }
+    }
+  </script>
+
+</body>
+</html>
